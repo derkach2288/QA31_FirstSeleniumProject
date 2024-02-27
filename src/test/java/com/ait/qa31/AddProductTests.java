@@ -44,7 +44,9 @@ public class AddProductTests extends TestBase{
         // click on Shopping cart link
         click(By.cssSelector(".ico-cart .cart-label"));
 
-        Assert.assertTrue(isProductAddedToCart("14.1-inch Laptop"));
+//        Assert.assertTrue(isProductAddedToCart("14.1-inch Laptop"));
+        Assert.assertEquals(driver.findElement(By.xpath("//td[@class='product']//a[.='14.1-inch Laptop']")).getText(), "14.1-inch Laptop");
+
 
     }
 
@@ -57,13 +59,13 @@ public class AddProductTests extends TestBase{
         driver.findElement(By.cssSelector(".qty-input")).sendKeys(Keys.ENTER);
     }
 
-    public boolean isProductAddedToCart(String text) {
-        List<WebElement> products = driver.findElements(By.cssSelector(".product-name"));
-        for (WebElement element : products) {
-            if (element.getText().contains(text)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean isProductAddedToCart(String text) {
+//        List<WebElement> products = driver.findElements(By.cssSelector(".product-name"));
+//        for (WebElement element : products) {
+//            if (element.getText().contains(text)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }
