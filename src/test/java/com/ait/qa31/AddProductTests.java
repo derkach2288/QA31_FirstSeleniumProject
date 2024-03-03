@@ -9,36 +9,33 @@ public class AddProductTests extends TestBase{
 
     @BeforeMethod
     public void precondition() {
-        if (!isLoginLinkPresent()) {
-            clickOnLogOutButton();
+        if (!app.getUser().isLoginLinkPresent()) {
+            app.getUser().clickOnLogOutButton();
         }
 
-        clickOnLoginLink();
-        fillLoginForm("derkach@gmail.com", "Qwerty1234$");
-        clickOnLoginButton();
-
-        // assert link with email is present
-//        Assert.assertTrue(isElementPresent(By.xpath("//a[.='derkach@gmail.com']")));
+        app.getUser().clickOnLoginLink();
+        app.getUser().fillLoginForm("derkach@gmail.com", "Qwerty1234$");
+        app.getUser().clickOnLoginButton();
     }
 
     @Test
     public  void addProductPositiveTest() {
         // click on the Add to cart button
-        clickOnAddToCartButton();
+        app.getProduct().clickOnAddToCartButton();
 
         // click on Shopping cart link
-        clickOnShoppingCartLink();
+        app.getProduct().clickOnShoppingCartLink();
 
 //        Assert.assertTrue(isProductAddedToCart("14.1-inch Laptop"));
 //        Assert.assertEquals(driver.findElement(By.xpath("//td[@class='product']//a[.='14.1-inch Laptop']")).getText(), "14.1-inch Laptop");
-        Assert.assertTrue(isProductAddedToCart());
+        Assert.assertTrue(app.getProduct().isProductAddedToCart());
 
 
     }
 
     @AfterMethod
     public void postCondition() {
-        deleteProductInCart();
+        app.getProduct().deleteProductInCart();
     }
 
     //    public boolean isProductAddedToCart(String text) {
