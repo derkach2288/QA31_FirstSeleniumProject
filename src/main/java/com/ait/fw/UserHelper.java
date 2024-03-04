@@ -18,7 +18,7 @@ public class UserHelper extends BaseHelper{
     }
 
     public boolean isAccountCreatedByEmailLink() {
-        return isElementPresent(By.xpath("//a[.='derkach8@gmail.com']"));
+        return isElementPresent(By.xpath("//a[.='derkach11@gmail.com']"));
     }
 
     public void clickOnRegisterButton() {
