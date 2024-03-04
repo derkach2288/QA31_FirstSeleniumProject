@@ -1,5 +1,6 @@
 package com.ait.qa31;
 
+import com.ait.fw.DataProviders;
 import com.ait.models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -35,26 +36,8 @@ public class CreateAccountTests extends TestBase{
         Assert.assertTrue(app.getUser().isAccountCreatedByEmailLink());
     }
 
-    @DataProvider
-    public Iterator<Object[]> createNewAccountFromCSV() throws IOException {
-        List<Object[]> list = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.csv")));
-
-        String line = reader.readLine();
-
-        while (line != null) {
-
-            String[] split = line.split(",");
-            list.add(new Object[]{new User().setName(split[0]).setLastName(split[1]).setEmail(split[2]).setPassword(split[3])});
-            line = reader.readLine();
-
-        }
-
-        return list.iterator();
-    }
-
-    @Test(dataProvider = "createNewAccountFromCSV")
+    @Test(dataProvider = "createNewAccountFromCSV", dataProviderClass = DataProviders.class)
     public void createNewAccountPositiveTestDataProviderWithFile(User user) {
         app.getUser().clickOnRegisterLink();
         app.getUser().fillRegisterForm(user);
